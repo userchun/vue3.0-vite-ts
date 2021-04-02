@@ -1,15 +1,30 @@
 <template>
-  <router-view />
+  <a-config-provider :locale="zhCN">
+    <router-view v-slot="{ Component, route }">
+      <transition :name="route.meta.transition || 'fade'">
+        <component :is="Component" />
+      </transition>
+    </router-view>
+  </a-config-provider>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, readonly, reactive } from 'vue';
+import { TranslationOutlined } from '@ant-design/icons-vue';
+import zhCN from 'ant-design-vue/es/locale/zh_CN';
 export default defineComponent({
   name: 'App',
-  setup() {},
+  components: {
+    TranslationOutlined,
+  },
+  setup() {
+    return {
+      zhCN,
+    };
+  },
 });
 </script>
 
 <style lang="less">
-@import './less/App.less';
+@import './App.less';
 </style>

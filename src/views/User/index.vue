@@ -8,4 +8,4 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style scoped lang="less"></style>

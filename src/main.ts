@@ -3,7 +3,7 @@ import App from './App.vue';
 import { setupStore } from './store';
 import router, { setupRouter } from './routes';
 import { setupAntd } from './antd';
-
+import 'amfe-flexible';
 (async () => {
   const app = createApp(App);
   // 配置路由

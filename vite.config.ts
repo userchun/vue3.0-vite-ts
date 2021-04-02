@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { resolve } from 'path';
 import { createAlias } from './src/utils/alias';
 export default defineConfig({
   plugins: [vue()],
@@ -13,8 +12,6 @@ export default defineConfig({
   alias: createAlias([
     // /@/xxxx => src/xxxx
     ['/@/', 'src'],
-    // /#/xxxx => types/xxxx
-    ['/#/', 'types'],
   ]),
   build: {
     outDir: 'dist',
