@@ -1,7 +1,7 @@
 <template>
   <a-config-provider :locale="zhCN">
     <router-view v-slot="{ Component, route }">
-      <transition :name="route.meta.transition || 'fade'">
+      <transition :name="route.meta.transition">
         <component :is="Component" />
       </transition>
     </router-view>
@@ -12,11 +12,13 @@
 import { defineComponent, ref, readonly, reactive } from 'vue';
 import { TranslationOutlined } from '@ant-design/icons-vue';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
+
 export default defineComponent({
   name: 'App',
   components: {
     TranslationOutlined,
   },
+
   setup() {
     return {
       zhCN,

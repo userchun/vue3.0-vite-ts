@@ -1,12 +1,12 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import NotFound from '/@/views/NotFound/index.vue';
 import type { App } from 'vue';
-
-import { getBaseUrl } from '../utils';
+import { getBaseUrl, getItem } from '../utils';
 
 const Login = () => import('/@/views/Login/index.vue');
 const Home = () => import('/@/views/Home/index.vue');
-const User = () => import('/@/views/User/index.vue');
+const Student = () => import('/@/views/Student/index.vue');
+const Echarts = () => import('../views/Echarts/index.vue');
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -16,21 +16,27 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'login',
     component: Login,
-    meta: { transition: 'slide-right' },
+    meta: { transition: 'zoom-fade' },
   },
   {
     path: '/home',
     name: 'home',
     component: Home,
+    redirect: '/home/echart',
     meta: {
       requiresAuth: true,
-      transition: 'slide-left',
+      transition: 'fade-slide',
     },
     children: [
       {
-        path: 'user',
-        name: 'user',
-        component: User,
+        path: 'student',
+        name: 'student',
+        component: Student,
+      },
+      {
+        path: 'echarts',
+        name: 'echarts',
+        component: Echarts,
       },
     ],
   },
@@ -38,6 +44,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: NotFound,
+    meta: { transition: 'fade-slide' },
   },
 ];
 
@@ -56,7 +63,7 @@ const router = createRouter({
 //   });
 // }
 router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem('token');
+  const token = getItem('token');
   if (to.path === '/' || to.path === '/login') {
     next();
   } else {
@@ -66,9 +73,6 @@ router.beforeEach((to, from, next) => {
       next({ path: '/' });
     }
   }
-
-  // if (to.name !== 'login' && !store.state.token) next({ name: 'login' });
-  // else next();
 });
 
 export function setupRouter(app: App<Element>) {

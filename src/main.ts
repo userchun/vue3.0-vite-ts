@@ -3,6 +3,7 @@ import App from './App.vue';
 import { setupStore } from './store';
 import router, { setupRouter } from './routes';
 import { setupAntd } from './antd';
+// import { setupEcharts } from './echarts';
 import 'amfe-flexible';
 (async () => {
   const app = createApp(App);
@@ -12,6 +13,7 @@ import 'amfe-flexible';
   setupAntd(app);
   // 配置store
   setupStore(app);
+  // setupEcharts(app);
   await router.isReady();
   app.mount('#app', true);
 })();

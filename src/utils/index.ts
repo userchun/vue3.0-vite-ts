@@ -47,3 +47,15 @@ export function isProdMode(): boolean {
 export function getBaseUrl(): string {
   return import.meta.env.VITE_APP_BASE_URL + '';
 }
+/**
+ * @description: getItem
+ */
+export function getItem(key: string): string | null {
+  return localStorage.getItem(key);
+}
+/**
+ * @description: getItem
+ */
+export function setItem(key: string, value: any): void {
+  localStorage.setItem(key, value);
+}
