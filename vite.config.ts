@@ -1,23 +1,30 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-
-import vitePluginImp from 'vite-plugin-imp';
+import usePluginImport from 'vite-plugin-importer';
+import styleImport from 'vite-plugin-style-import';
 export default defineConfig({
   plugins: [
     vue(),
-    vitePluginImp({
-      libList: [
+    usePluginImport({
+      libraryName: 'ant-design-vue',
+      libraryDirectory: 'es',
+      style: 'css',
+    }),
+
+    styleImport({
+      libs: [
         {
-          libName: 'ant-design-vue',
-          style(name) {
-            if (/popconfirm/.test(name)) {
-              // support multiple style file path to import
-              return [
-                'ant-design-vue/es/button/style/index.css',
-                'ant-design-vue/es/popover/style/index.css',
-              ];
-            }
-            return `ant-design-vue/es/${name}/style/index.css`;
+          libraryName: 'ant-design-vue',
+          esModule: true,
+          resolveStyle: (name) => {
+            return `ant-design-vue/es/${name}/style/index`;
+          },
+        },
+        {
+          libraryName: 'antd',
+          esModule: true,
+          resolveStyle: (name) => {
+            return `antd/es/${name}/style/index`;
           },
         },
       ],

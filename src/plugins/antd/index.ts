@@ -10,6 +10,7 @@ import {
   Popover,
   Tabs,
   Breadcrumb,
+  Spin,
 } from 'ant-design-vue';
 
 export function setupAntd(app: App<Element>) {
@@ -24,6 +25,7 @@ export function setupAntd(app: App<Element>) {
     Popover,
     Tabs,
     Breadcrumb,
+    Spin,
   ];
   antd.forEach((plugin) => {
     app.use(plugin);

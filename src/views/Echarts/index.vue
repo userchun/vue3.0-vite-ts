@@ -2,7 +2,9 @@
   <v-chart class="chart" :option="option" />
 </template>
 
-<script>
+<script lang="ts">
+import { ref, defineComponent } from 'vue';
+
 import { use } from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
 import { PieChart } from 'echarts/charts';
@@ -12,7 +14,6 @@ import {
   LegendComponent,
 } from 'echarts/components';
 import VChart, { THEME_KEY } from 'vue-echarts';
-import { ref, defineComponent } from 'vue';
 
 use([
   CanvasRenderer,

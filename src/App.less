@@ -8,10 +8,6 @@ input:-webkit-autofill {
   transition: background-color 5000s ease-in-out 0s !important;
 }
 
-html {
-  overflow: hidden;
-  -webkit-text-size-adjust: 100%;
-}
 * {
   margin: 0;
   padding: 0;
@@ -27,7 +23,8 @@ body,
   height: 100%;
   overflow: visible !important;
   overflow-x: hidden !important;
-
+  background: url(./assets/bg.jpeg) no-repeat center;
+  background-size: cover;
   &.color-weak {
     filter: invert(80%);
   }
@@ -45,4 +42,10 @@ div,
 svg,
 span {
   outline: none !important;
+}
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

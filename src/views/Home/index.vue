@@ -69,44 +69,23 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, watch } from 'vue';
+<script lang="ts" setup>
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import {
   UserOutlined,
   VideoCameraOutlined,
-  UploadOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons-vue';
 
-import { RouterLink, useRoute } from 'vue-router';
+const route = useRoute();
+const collapsed = ref<boolean>(false);
+const selectedKeys = ref<string[]>([route.path]);
+const selectedKeyArr = ref(selectedKeys.value[0].split('/'));
 
-export default defineComponent({
-  name: 'Home',
-  components: {
-    UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
-    RouterLink,
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
-  },
-  setup() {
-    const route = useRoute();
-    const collapsed = ref<boolean>(false);
-    const selectedKeys = ref<string[]>([route.path]);
-    const selectedKeyArr = ref(selectedKeys.value[0].split('/'));
-
-    watch(selectedKeys, (selectedKeys) => {
-      selectedKeyArr.value = selectedKeys[0].split('/');
-    });
-
-    return {
-      selectedKeys,
-      selectedKeyArr,
-      collapsed,
-    };
-  },
+watch(selectedKeys, (selectedKeys) => {
+  selectedKeyArr.value = selectedKeys[0].split('/');
 });
 </script>
 

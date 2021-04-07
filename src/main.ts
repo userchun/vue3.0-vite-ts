@@ -3,7 +3,6 @@ import App from '@/App.vue';
 import { setupStore } from '@/store';
 import router, { setupRouter } from '@/routes';
 import { setupAntd } from '@/plugins/antd';
-// import { setupEcharts } from './echarts';
 import 'amfe-flexible';
 (async () => {
   const app = createApp(App);

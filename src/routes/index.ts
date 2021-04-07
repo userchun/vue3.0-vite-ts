@@ -16,7 +16,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'login',
     component: Login,
-    meta: { transition: 'zoom-fade' },
+    meta: {
+      transition: 'fade-slide',
+    },
   },
   {
     path: '/home',
@@ -25,18 +27,20 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/home/echarts',
     meta: {
       requiresAuth: true,
-      transition: 'fade-slide',
+      transition: 'slide-fade',
     },
     children: [
       {
         path: 'student',
         name: 'student',
         component: Student,
+        meta: {},
       },
       {
         path: 'echarts',
         name: 'echarts',
         component: Echarts,
+        meta: {},
       },
     ],
   },
@@ -44,7 +48,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: NotFound,
-    meta: { transition: 'fade-slide' },
+    meta: { transition: 'fade' },
   },
 ];
 
