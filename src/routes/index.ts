@@ -1,12 +1,12 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import NotFound from '/@/views/NotFound/index.vue';
+import NotFound from '@/views/NotFound/index.vue';
 import type { App } from 'vue';
-import { getBaseUrl, getItem } from '../utils';
+import { getBaseUrl, getItem } from '@/utils';
 
-const Login = () => import('/@/views/Login/index.vue');
-const Home = () => import('/@/views/Home/index.vue');
-const Student = () => import('/@/views/Student/index.vue');
-const Echarts = () => import('../views/Echarts/index.vue');
+const Login = () => import('@/views/Login/index.vue');
+const Home = () => import('@/views/Home/index.vue');
+const Student = () => import('@/views/Student/index.vue');
+const Echarts = () => import('@/views/Echarts/index.vue');
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -22,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/home',
     name: 'home',
     component: Home,
-    redirect: '/home/echart',
+    redirect: '/home/echarts',
     meta: {
       requiresAuth: true,
       transition: 'fade-slide',

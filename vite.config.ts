@@ -1,18 +1,39 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { createAlias } from './src/utils/alias';
+
+import vitePluginImp from 'vite-plugin-imp';
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    vitePluginImp({
+      libList: [
+        {
+          libName: 'ant-design-vue',
+          style(name) {
+            if (/popconfirm/.test(name)) {
+              // support multiple style file path to import
+              return [
+                'ant-design-vue/es/button/style/index.css',
+                'ant-design-vue/es/popover/style/index.css',
+              ];
+            }
+            return `ant-design-vue/es/${name}/style/index.css`;
+          },
+        },
+      ],
+    }),
+  ],
   server: {
     port: 4000,
     hmr: { overlay: false },
     open: true,
   },
-
-  alias: createAlias([
-    // /@/xxxx => src/xxxx
-    ['/@/', 'src'],
-  ]),
+  resolve: {
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
+    alias: {
+      '@': '/src',
+    },
+  },
   build: {
     outDir: 'dist',
     terserOptions: {

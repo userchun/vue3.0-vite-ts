@@ -4,10 +4,7 @@
       <a-layout-sider
         v-model:collapsed="collapsed"
         :trigger="null"
-        collapsible
         breakpoint="lg"
-        @collapse="onCollapse"
-        @breakpoint="onBreakpoint"
       >
         <div class="logo"></div>
         <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
@@ -29,12 +26,12 @@
         <a-layout-header
           style="background: #fff; padding: 0; padding-left: 20px"
         >
-          <menu-unfold-outlined
+          <MenuUnfoldOutlined
             v-if="collapsed"
             class="trigger"
             @click="() => (collapsed = !collapsed)"
           />
-          <menu-fold-outlined
+          <MenuFoldOutlined
             v-else
             class="trigger"
             @click="() => (collapsed = !collapsed)"
@@ -47,8 +44,8 @@
               v-show="item"
               v-for="item in selectedKeyArr"
               :key="item"
-              >{{ item }}</a-breadcrumb-item
-            >
+              >{{ item }}
+            </a-breadcrumb-item>
           </a-breadcrumb>
           <div
             :style="{
@@ -57,7 +54,11 @@
               height: '100%',
             }"
           >
-            <router-view />
+            <RouterView v-slot="{ Component, route }">
+              <transition :name="route.meta.transition">
+                <keep-alive> <component :is="Component" /></keep-alive>
+              </transition>
+            </RouterView>
           </div>
         </a-layout-content>
         <a-layout-footer style="text-align: center">
@@ -94,24 +95,16 @@ export default defineComponent({
     const route = useRoute();
     const collapsed = ref<boolean>(false);
     const selectedKeys = ref<string[]>([route.path]);
-    let selectedKeyArr = ref(selectedKeys.value[0].split('/'));
+    const selectedKeyArr = ref(selectedKeys.value[0].split('/'));
+
     watch(selectedKeys, (selectedKeys) => {
       selectedKeyArr.value = selectedKeys[0].split('/');
     });
-    const onCollapse = (collapsed: boolean, type: string) => {
-      console.log(collapsed, type);
-    };
-
-    const onBreakpoint = (broken: boolean) => {
-      console.log(broken);
-    };
 
     return {
       selectedKeys,
       selectedKeyArr,
       collapsed,
-      onCollapse,
-      onBreakpoint,
     };
   },
 });

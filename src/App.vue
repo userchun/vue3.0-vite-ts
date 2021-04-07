@@ -1,11 +1,11 @@
 <template>
-  <a-config-provider :locale="zhCN">
+  <aConfigProvider :locale="zhCN">
     <router-view v-slot="{ Component, route }">
       <transition :name="route.meta.transition">
         <component :is="Component" />
       </transition>
     </router-view>
-  </a-config-provider>
+  </aConfigProvider>
 </template>
 
 <script lang="ts">
@@ -18,7 +18,6 @@ export default defineComponent({
   components: {
     TranslationOutlined,
   },
-
   setup() {
     return {
       zhCN,

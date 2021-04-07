@@ -1,8 +1,8 @@
 import { createApp } from 'vue';
-import App from './App.vue';
-import { setupStore } from './store';
-import router, { setupRouter } from './routes';
-import { setupAntd } from './antd';
+import App from '@/App.vue';
+import { setupStore } from '@/store';
+import router, { setupRouter } from '@/routes';
+import { setupAntd } from '@/plugins/antd';
 // import { setupEcharts } from './echarts';
 import 'amfe-flexible';
 (async () => {

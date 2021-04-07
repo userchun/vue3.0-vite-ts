@@ -91,6 +91,7 @@
           size="large"
           style="width: 338px"
           @click="submit"
+          :loading="btnLoading"
         >
           确定
         </a-button>
@@ -143,6 +144,7 @@ export default defineComponent({
     const emailFormRef = ref();
     const codeFormRef = ref();
     const activeKey = ref('1');
+    const btnLoading = ref(false);
     const rules = reactive({
       username: [
         {
@@ -193,6 +195,7 @@ export default defineComponent({
         await emailFormRef.value.validate();
         console.log('values', emailFormState, toRaw(emailFormState));
         localStorage.setItem('token', 'token');
+        btnLoading.value = false;
         store.commit('login');
         router.push({
           name: 'home',
@@ -200,23 +203,22 @@ export default defineComponent({
       } catch (error) {}
     };
     const useCodeLogin = async () => {
-      console.log(222);
       try {
         await codeFormRef.value.validate();
         console.log('values', codeFormState, toRaw(codeFormState));
         setItem('token', 'token');
         store.commit('login');
+        btnLoading.value = false;
         router.push({
           name: 'home',
         });
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     const getCode = () => {
       console.log('getCode');
     };
     const submit = () => {
+      btnLoading.value = true;
       activeKey.value === '1' ? useEmailLogin() : useCodeLogin();
     };
     return {
@@ -230,6 +232,7 @@ export default defineComponent({
       emailFormRef,
       codeFormRef,
       submit,
+      btnLoading,
     };
   },
 });
