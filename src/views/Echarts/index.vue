@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue';
+import { ref, defineComponent, reactive } from 'vue';
 
 import { use } from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
@@ -32,7 +32,7 @@ export default defineComponent({
     [THEME_KEY]: 'white',
   },
   setup: () => {
-    const option = ref({
+    const option = reactive({
       title: {
         text: 'Traffic Sources',
         left: 'center',

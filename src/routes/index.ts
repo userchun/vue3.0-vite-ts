@@ -27,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/home/echarts',
     meta: {
       requiresAuth: true,
-      transition: 'slide-fade',
+      // transition: 'slide-fade',
     },
     children: [
       {

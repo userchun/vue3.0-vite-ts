@@ -3,23 +3,18 @@
     <transition name="fade-slide">
       <div class="login-container">
         <div class="top">
-          <div class="header">
+          <div class="header enter-">
             <a href="/">
-              <img
-                src="../../assets/logo.png"
-                class="logo"
-                alt="logo"
-                data-v-7f4a88ba=""
-              />
-              <span class="title" data-v-7f4a88ba="">WinLive</span></a
+              <img src="../../assets/logo.png" class="logo" alt="logo" />
+              <span class="title">WinLive</span></a
             >
           </div>
-          <div class="desc">
+          <div class="desc -enter-x">
             线上线下教育优势培养具备核心竞争力和全方位胜任力的
             <span style="font-size: 20px; color: black"> 21世纪创新人才!</span>
           </div>
         </div>
-        <div class="main">
+        <div class="main -enter-x">
           <a-tabs v-model:activeKey="activeKey" size="large">
             <a-tab-pane key="1" tab="邮箱登录">
               <a-form
@@ -97,7 +92,7 @@
             确定
           </a-button>
         </div>
-        <div class="footer">
+        <div class="footer enter-x">
           <div class="links" data-v-7f4a88ba="">
             <a href="_self" data-v-7f4a88ba="">帮助</a
             ><a href="_self" data-v-7f4a88ba="">隐私</a
@@ -123,7 +118,8 @@ import { defineComponent, reactive, UnwrapRef, ref, toRaw } from 'vue';
 import sha512 from 'js-sha512';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
-import { setItem } from '../../utils';
+import { setItem } from '@/utils';
+import { login } from '@/axios/api';
 interface EmailFormState {
   username: string;
   password: string;
@@ -204,7 +200,10 @@ export default defineComponent({
       try {
         await emailFormRef.value.validate();
         console.log('values', emailFormState, toRaw(emailFormState));
-        loginSuccess();
+        const res = await login(toRaw(emailFormState));
+        console.log(res);
+
+        // loginSuccess();
       } catch (error) {}
     };
     const useCodeLogin = async () => {

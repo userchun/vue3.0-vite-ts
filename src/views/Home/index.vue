@@ -1,12 +1,13 @@
 <template>
   <div class="home">
     <a-layout>
-      <a-layout-sider
-        v-model:collapsed="collapsed"
-        :trigger="null"
-        breakpoint="lg"
-      >
-        <div class="logo"></div>
+      <a-layout-sider v-model:collapsed="collapsed" :trigger="null">
+        <div class="logo">
+          <a href="/pro/preview/" class="router-link-active"
+            ><img src="../../assets/logo.png" alt="logo" />
+            <h1 v-show="!collapsed">winabc</h1></a
+          >
+        </div>
         <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
           <a-menu-item key="/home/echarts">
             <RouterLink to="/home/echarts">
