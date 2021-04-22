@@ -1211,6 +1211,11 @@ postcss-modules@^4.0.0:
     postcss-modules-values "^4.0.0"
     string-hash "^1.1.1"
 
+postcss-pxtorem@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.npm.taobao.org/postcss-pxtorem/download/postcss-pxtorem-6.0.0.tgz?cache=0&sync_timestamp=1615001364186&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpostcss-pxtorem%2Fdownload%2Fpostcss-pxtorem-6.0.0.tgz#f228a4d05d8a73f0642eabae950e2b19836366d7"
+  integrity sha1-8iik0F2Kc/BkLquulQ4rGYNjZtc=
+
 postcss-selector-parser@^6.0.2, postcss-selector-parser@^6.0.4:
   version "6.0.4"
   resolved "https://registry.npm.taobao.org/postcss-selector-parser/download/postcss-selector-parser-6.0.4.tgz?cache=0&sync_timestamp=1601045448419&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpostcss-selector-parser%2Fdownload%2Fpostcss-selector-parser-6.0.4.tgz"

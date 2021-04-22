@@ -203,7 +203,7 @@ export default defineComponent({
         const res = await login(toRaw(emailFormState));
         console.log(res);
 
-        // loginSuccess();
+        loginSuccess();
       } catch (error) {}
     };
     const useCodeLogin = async () => {
